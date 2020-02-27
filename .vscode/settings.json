@@ -1,4 +1,7 @@
 {
     "python.pythonPath": "E:\\ProgramData\\Anaconda3\\python.exe",
-    "aiXcoder.searchIntegratedWindow": true
+    "aiXcoder.searchIntegratedWindow": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
 }
