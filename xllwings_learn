@@ -1,0 +1,11 @@
+import xlwings as xw
+excel = xw.App()
+excel.books.add()
+wb=excel.books.open(r'G:\1.xlsx')
+ws=wb.sheets.add()
+ws.name='我的工作表'
+ws.clear()
+ws =wb.sheets[0]
+r=ws.range('A2')
+print(r.value)
+
