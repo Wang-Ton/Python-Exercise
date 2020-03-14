@@ -19,11 +19,11 @@ def save():
 
 
 fm_main = Tk()
-t1 = Text(fm_main)
 b1 = Button(fm_main, text='获取外汇牌价', command=download)
 b2 = Button(fm_main, text='保存到文件', command=save)
+t1 = Text(fm_main)
 
-t1.pack()
 b1.pack()
 b2.pack()
+t1.pack()
 fm_main.mainloop()

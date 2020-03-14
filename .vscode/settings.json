@@ -4,10 +4,13 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
-    "spellright.language": [],
+    "spellright.language": [
+        "en"
+    ],
     "spellright.documentTypes": [
         "markdown",
         "latex",
-        "plaintext"
+        "plaintext",
+        "html"
     ]
 }
