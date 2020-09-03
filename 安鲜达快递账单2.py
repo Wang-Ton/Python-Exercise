@@ -14,25 +14,24 @@ Table.insert(4, '合计', Column_sum)
 #order = ['客户订单号', '包材辅料总费用', '订单操作费', '配送费用', '合计']
 Table = Table[['日期', '客户订单号', '包材辅料总费用', '订单操作费',
                '配送费用', '合计', '仓库', '订单原料详情', '重量(kg)', '收货人城市']]
-Table = Table.reset_index(drop =False)
-Sum_weight=[]
+Table = Table.reset_index(drop=False)
+Sum_weight = []
 for i in range(Table.shape[0]):
-    Data = Table.at[i,'订单原料详情']
-    Data = re.findall(r"\d+\.?\d*",Data)
-    Data = list(map(float,Data))
-    x=Data[::2]
-    y=Data[1::2]
-    Produt_weight = list(map(lambda x, y: x*y,x,y))
+    Data = Table.at[i, '订单原料详情']
+    Data = re.findall(r"\d+\.?\d*", Data)
+    Data = list(map(float, Data))
+    x = Data[::2]
+    y = Data[1::2]
+    Produt_weight = list(map(lambda x, y: x*y, x, y))
     Sum_product_weight = sum(Produt_weight)
     Sum_weight.append(Sum_product_weight)
-#print(Data)
-#print(Sum_product_weight)
+# print(Data)
+# print(Sum_product_weight)
 
 
-
-#for i in Table.shape[1]:
+# for i in Table.shape[1]:
 #    Table.iloc[i,'商品重量']=Table.iloc[i,'包材辅料总费用'].
-    
+
 
 # 将克数与数量相乘
 # print(Table.head())
