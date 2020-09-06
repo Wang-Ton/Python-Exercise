@@ -46,7 +46,7 @@ def find_movies(res):
     result = []
     length = len(movies)
     for i in range(length):
-        result.append(movies[i]+ranks[i]+messages[i]+'\n')
+        result.append(movies[i]+','+ranks[i]+','+messages[i]+'\n')
     return result
 
 #  获取所有页码
@@ -69,7 +69,7 @@ def main():
         url = host+'/?start='+str(25*i)
         res = open_url(url)
         result.extend(find_movies(res))
-    with open(r"d:\豆瓣Top250电影.txt", "w", encoding="utf-8") as f:
+    with open(r"d:\豆瓣Top250电影.csv", "w", encoding="utf-8") as f:
         for each in result:
             f.write(each)
 
