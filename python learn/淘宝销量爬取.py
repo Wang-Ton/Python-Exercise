@@ -1,4 +1,7 @@
 import requests
+import re
+import json
+import pandas as pd
 
 
 def open_url(keywords, page=1):
@@ -11,14 +14,33 @@ def open_url(keywords, page=1):
     return res
 
 
+def get_items(res):
+    g_page_config = re.search(r'g_page_config = (.*?);\n', res.text)
+    page_config_json = json.loads(g_page_config.group(1))
+    page_items = page_config_json['mods']['itemlist']['data']['auctions']
+
+    results = []  # 整理出我们关注的信息（ID、标题、链接、售价、销量和商家）
+    for each_item in page_items:
+        dict1 = dict.fromkeys(('nid', 'title', 'detail_url', 'view_price', 'view_sales', 'nick'))
+        dict1['nid'] = each_item['nid']
+        dict1['title'] = each_item['title']
+        dict1['detail_url'] = each_item['detail_url']
+        dict1['view_price'] = each_item['view_price']
+        dict1['view_sales'] = each_item['view_sales']
+        dict1['nick'] = each_item['nick']
+        results.append(dict1)
+
+    return results
+
+
 def main():
     keywords = input("请输入关键词:")
-    page=3
+    page = 3
+    items = pd.DataFrame(columns=['nid', 'title', 'detail_url', 'view_price', 'view_sales', 'nick'])
     for each in range(page):
-        res = open_url(keywords,each+1)
-
-    with open(r"d:\销售数据.txt", "w", encoding="utf-8") as file:
-        file.write(res.text)
+        res = open_url(keywords, each+1)
+        items = items.append(pd.DataFrame(get_items(res)), sort=True)
+        items.to_excel(r"d:\Data.xlsx")
 
 
 if __name__ == "__main__":
